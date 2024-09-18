@@ -1,14 +1,14 @@
-const express = require('express');
-const router = express.Router();
-const {
-  getHealthRecords,
-  getHealthRecord,
-  createHealthRecord,
-  updateHealthRecord,
-  deleteHealthRecord,
-} = require('../controllers/healthRecordController');
+const express = require('express')
+const { createHealthRecord, getHealthRecords, updateHealthRecord, deleteHealthRecord } = require('../controllers/healthRecordController')
+const authMiddleware = require('../middleware/authMiddleware')
 
-router.route('/').get(getHealthRecords).post(createHealthRecord);
-router.route('/:id').get(getHealthRecord).put(updateHealthRecord).delete(deleteHealthRecord);
+const router = express.Router()
 
-module.exports = router;
+router.use(authMiddleware)
+
+router.post('/', createHealthRecord)
+router.get('/', getHealthRecords)
+router.put('/:id', updateHealthRecord)
+router.delete('/:id', deleteHealthRecord)
+
+module.exports = router

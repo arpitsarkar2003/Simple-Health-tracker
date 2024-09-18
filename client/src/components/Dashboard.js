@@ -40,9 +40,9 @@ const DashBoard = () => {
         record.heartRate.toString().includes(searchTerm)
     );
 
-    // if (loading) {
-    //     return <div>Loading...</div>;
-    // }
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="container mx-auto px-4">
@@ -54,7 +54,7 @@ const DashBoard = () => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
-                <Link to="/add" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <Link to="/add-record" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Add New Record
                 </Link>
             </div>

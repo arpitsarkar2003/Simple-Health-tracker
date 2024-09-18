@@ -153,7 +153,7 @@ const HealthRecordDetail = () => {
           <p><strong>Heart Rate:</strong> {record.heartRate} bpm</p>
           <div className="flex items-center justify-between mt-4">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               onClick={() => setIsEditing(true)}
             >
               Edit
