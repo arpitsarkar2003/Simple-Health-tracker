@@ -1,29 +1,37 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import HomePage from './pages/HomePage';
-import AddPage from './pages/AddPage';
-import EditPage from './pages/EditPage';
-import HealthRecordDetail from './components/HealthRecordDetail';
-import AddHealthRecord from './components/AddHealthRecord';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { LoadingProvider } from './context/LoadingContext';
+import PrivateRoute from './components/PrivateRoute';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/add" element={<AddPage />} />
-          <Route path="/edit/:id" element={<EditPage />} />
-          <Route path="/health-records/:id" element={<HealthRecordDetail />} />
-          <Route path="/add-record" element={<AddHealthRecord />} />
-        </Routes>
-      </Router>
+      <LoadingProvider>
+        <Router>
+          <div className="App">
+            <Navbar />
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+
+              {/* Protected routes */}
+              <Route element={<PrivateRoute />}>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+              </Route>
+
+              {/* Redirect to login if route not found */}
+              <Route path="*" element={<Navigate to="/login" />} />
+            </Routes>
+          </div>
+        </Router>
+      </LoadingProvider>
     </AuthProvider>
   );
 }
