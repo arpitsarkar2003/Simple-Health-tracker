@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const User = require('../models/User'); // Make sure the path to the User model is correct
+const User = require('../models/User');
 
 mongoose.set('strictQuery', false);
 
@@ -11,7 +11,6 @@ const connectDB = async () => {
     });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
     
-    // Drop the 'username_1' index if it exists
     try {
       await User.collection.dropIndex('username_1');
       console.log('Dropped unnecessary username index');

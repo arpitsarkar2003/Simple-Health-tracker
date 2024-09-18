@@ -5,7 +5,6 @@ function HealthRecordItem({ record, onUpdate, onDelete }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedRecord, setEditedRecord] = useState(record);
 
-  // Format date for display
   const formattedDate = format(new Date(record.date), 'yyyy-MM-dd hh:mm a');
 
   const handleEdit = () => {

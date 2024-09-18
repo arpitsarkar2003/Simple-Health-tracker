@@ -5,7 +5,6 @@ exports.register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
     
-    // Check if email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       console.log('Email already exists');
@@ -18,7 +17,7 @@ exports.register = async (req, res) => {
 
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
-    console.error('Registration error:', error);  // Add error logging here
+    console.error('Registration error:', error);
     res.status(500).json({ message: 'Server error' });
   }
 };
